@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\ekroz\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\ekroz\\.nuget\\packages"
+    ]
+  }
+}
