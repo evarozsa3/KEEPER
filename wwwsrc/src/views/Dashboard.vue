@@ -1,17 +1,17 @@
 <template>
   <div class="dashboard">
-    <h1>WELCOME TO THE DASHBOARD</h1>
+    <!-- <h1>WELCOME TO THE DASHBOARD</h1> -->
     public {{ publicKeeps }} user {{ userKeeps }}
-    <keeps></keeps>
+    <add-keeps></add-keeps>
   </div>
 </template>
 
 <script>
-import Keeps from "../components/Keeps.vue";
+import AddKeeps from "../components/AddKeeps.vue";
 export default {
   mounted() {},
   computed: {},
-  components: { Keeps }
+  components: { AddKeeps }
 };
 </script>
 

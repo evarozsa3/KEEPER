@@ -44,7 +44,7 @@
 
 <script>
 export default {
-  name: "keeps",
+  name: "addkeeps",
   data() {
     return {
       newKeep: {}

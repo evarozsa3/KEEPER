@@ -1,25 +1,33 @@
 <template>
-  <div class="home">
+  <div class="home container-fluid">
     <!-- <h1>Welcome Home</h1> -->
-    <keeps></keeps>
+    <add-keeps></add-keeps>
+    <k-card></k-card>
+    <div class="row">
+      <k-card v-for="publicKeep in publicKeeps" :keepData="publicKeep" :key="publicKeep.id"></k-card>
+    </div>
   </div>
 </template>
 
 <script>
-import Keeps from "../components/Keeps.vue";
+import KCard from "../components/KCard.vue";
+import AddKeeps from "../components/AddKeeps.vue";
 export default {
   name: "home",
   computed: {
     keeps() {
       console.log(this.$store.state.publicKeeps);
       return this.$store.state.publicKeeps;
+    },
+    publicKeeps() {
+      return this.$store.state.publicKeeps;
+    },
+    user() {
+      return this.$store.state.user;
     }
-    // user() {
-    //   return this.$store.state.user;
-    // }
   },
   mounted() {
-    this.$store.commit("getKeeps");
+    // this.$store.commit("getKeeps");
   },
   methods: {
     logout() {
@@ -36,7 +44,8 @@ export default {
     // }
   },
   components: {
-    Keeps
+    AddKeeps,
+    KCard
   }
 };
 </script>
