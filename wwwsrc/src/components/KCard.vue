@@ -5,7 +5,7 @@
       <img style="width: 18rem;" class="img" :src="keepData.img" alt="#" />
       <h5>name: {{keepData.name}}</h5>
       <p>{{keepData.description}}</p>
-      <button class="btn btn-warning">delete</button>
+      <button class="btn btn-warning" @click="deleteKeep()">delete</button>
     </div>
   </div>
 </template>
@@ -19,6 +19,12 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getKeeps");
+  },
+  methods: {
+    deleteKeep() {
+      console.log("your keep is no longer with you");
+      this.$store.dispatch("deleteKeep", this.keepData.id);
+    }
   }
 };
 </script>

@@ -11,7 +11,7 @@ let baseUrl = location.host.includes("localhost")
 
 let api = Axios.create({
   baseURL: baseUrl + "api/",
-  timeout: 3000,
+  timeout: 10000,
   withCredentials: true
 });
 
@@ -52,20 +52,13 @@ export default new Vuex.Store({
       }
     },
 
-    // async deleteKeep({ commit, dispatch }, id) {
-    //   try {
-    //     let res = await api.delete("keeps/" + id);
-    //     this.dispatch("getKeeps")
-    //   } catch (err) {
-    //     alert(JSON.stringify(err));
-    //   }
-    // },
-
-
-    // getKeeps({ commit, dispatch }, payload) {
-    //   api.get('keeps')
-    //     .then(res => {
-    //       commit('setKeeps', res.data)
-    //     })
+    async deleteKeep({ commit, dispatch }, id) {
+      try {
+        let res = await api.delete("keeps/" + id);
+        this.dispatch("getKeeps")
+      } catch (err) {
+        alert(JSON.stringify(err));
+      }
+    },
   },
 });
