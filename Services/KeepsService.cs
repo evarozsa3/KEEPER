@@ -18,9 +18,33 @@ namespace Keepr.Services
       return _repo.Get();
     }
 
+    public Keep GetById(int id)
+    {
+      Keep foundKeep = _repo.GetById(id);
+      if (foundKeep == null)
+      {
+        throw new Exception("invalid id");
+      }
+      return foundKeep;
+    }
+
     public Keep Create(Keep newKeep)
     {
       return _repo.Create(newKeep);
+    }
+
+    internal string Delete(int id, string userId)
+    {
+      Keep foundKeep = GetById(id);
+      if (foundKeep.UserId != userId)
+      {
+        throw new Exception("You can only delete your own keeps");
+      }
+      if (_repo.Delete(id, userId))
+      {
+        return "Deleted";
+      }
+      throw new Exception("Deleted yeppers");
     }
   }
 }

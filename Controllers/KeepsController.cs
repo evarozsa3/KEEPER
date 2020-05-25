@@ -33,6 +33,19 @@ namespace Keepr.Controllers
       };
     }
 
+    [HttpGet("{id}")]
+    public ActionResult<Keep> GetById(int id)
+    {
+      try
+      {
+        return Ok(_ks.GetById(id));
+      }
+      catch (System.Exception err)
+      {
+        return BadRequest(err.Message);
+      }
+    }
+
     [HttpPost]
     [Authorize]
     public ActionResult<Keep> Post([FromBody] Keep newKeep)
@@ -46,6 +59,26 @@ namespace Keepr.Controllers
       catch (Exception e)
       {
         return BadRequest(e.Message);
+      }
+    }
+
+    [Authorize]
+    [HttpDelete("{id}")]
+    public ActionResult<string> Delete(int id)
+    {
+      try
+      {
+        Claim user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+        if (user == null)
+        {
+          throw new Exception("Please log in to delete");
+        }
+        string userId = user.Value;
+        return Ok(_ks.Delete(id, userId));
+      }
+      catch (System.Exception err)
+      {
+        return BadRequest(err.Message);
       }
     }
   }
