@@ -3,8 +3,13 @@
     <!-- <h1>Welcome Home</h1> -->
     <!-- <add-keeps></add-keeps> -->
     <k-card></k-card>
-    <div class="row">
-      <k-card v-for="publicKeep in publicKeeps" :keepData="publicKeep" :key="publicKeep.id"></k-card>
+    <div class="row m-1">
+      <k-card
+        class="ml-5"
+        v-for="publicKeep in publicKeeps"
+        :keepData="publicKeep"
+        :key="publicKeep.id"
+      ></k-card>
     </div>
   </div>
 </template>

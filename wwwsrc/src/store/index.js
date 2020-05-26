@@ -18,11 +18,15 @@ let api = Axios.create({
 export default new Vuex.Store({
   state: {
     // keeps: [],
-    publicKeeps: []
+    publicKeeps: [],
+    myVaults: []
   },
   mutations: {
     setKeeps(state, publicKeeps) {
       state.publicKeeps = publicKeeps
+    },
+    setVaults(state, myVaults) {
+      state.myVaults = myVaults
     }
   },
   actions: {
@@ -56,6 +60,35 @@ export default new Vuex.Store({
       try {
         let res = await api.delete("keeps/" + id);
         this.dispatch("getKeeps")
+      } catch (err) {
+        alert(JSON.stringify(err));
+      }
+    },
+
+    async getVaults({ commit }) {
+      try {
+        let res = await api.get('vaults')
+        commit("setVaults", res.data)
+      } catch (err) {
+        alert(JSON.stringify(err));
+      }
+    },
+    async createVault({
+      dispatch
+    }, newVault) {
+      try {
+        let res = await api.post('vaults', newVault)
+        dispatch('getVaults')
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+    async deleteVault({ commit, dispatch }, id) {
+      try {
+        console.log("im a delete function")
+        let res = await api.delete("vaults/" + id);
+        this.dispatch("getVaults")
       } catch (err) {
         alert(JSON.stringify(err));
       }

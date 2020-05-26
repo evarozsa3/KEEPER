@@ -1,11 +1,15 @@
 <template>
   <div class="m-3">
-    <div class="card" style="width: 18rem;">
+    <div class="card mt-5" style="width: 19rem;">
       <!-- <h1>HEY YOu</h1> -->
-      <img style="width: 18rem;" class="img" :src="keepData.img" alt="#" />
-      <h5>name: {{keepData.name}}</h5>
-      <p>{{keepData.description}}</p>
-      <button class="btn btn-warning" @click="deleteKeep()">delete</button>
+
+      <img class="img m-1" style="width: 18.3rem; height: 18rem;" :src="keepData.img" alt="#" />
+      <div class="p-2">
+        <h5>name: {{keepData.name}}</h5>
+        <p>{{keepData.description}}</p>
+      </div>
+      <button class="btn btn-success kbtn m-1 pb-0 pt-0">Add to Vault</button>
+      <button class="btn btn-warning kbtn m-1 pb-0 pt-0" @click="deleteKeep()">delete</button>
     </div>
   </div>
 </template>
@@ -32,5 +36,14 @@ export default {
 <style>
 .img {
   height: 40vh;
+  border-top-left-radius: 2%;
+  border-top-right-radius: 2%;
+}
+.kbtn {
+  height: 4vh;
+}
+.card {
+  border-radius: 2%;
+  border: black solid 2px;
 }
 </style>

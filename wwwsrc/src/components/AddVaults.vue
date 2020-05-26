@@ -1,8 +1,8 @@
 <template>
   <div class="m-5">
     <!-- <H1>HELLO THERE</H1> -->
-    <form class="addform p-3" @submit.prevent="createKeep()">
-      <h1 class="text-center text-info">+Keep</h1>
+    <form class="addvform p-3" @submit.prevent="createVault()">
+      <h1 class="text-center text-info">+Vault</h1>
       <div class="form-group">
         <label for="name">Name:</label>
         <input
@@ -10,7 +10,7 @@
           name="name"
           class="form-control"
           placeholder="Enter name...."
-          v-model="newKeep.name"
+          v-model="newVault.name"
         />
       </div>
       <div class="form-group">
@@ -20,10 +20,10 @@
           name="description"
           class="form-control"
           placeholder="Describe...."
-          v-model="newKeep.description"
+          v-model="newVault.description"
         />
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="img">ImgUrl:</label>
         <input
           type="text"
@@ -32,11 +32,13 @@
           placeholder="paste img url...."
           v-model="newKeep.img"
         />
-      </div>
-      <div class="form-group ml-3">
-        <!-- <label for="checkbox">Make public</label>
-        <input class="ml-1" type="checkbox" id="checkbox" v-model="newKeep.isPrivate" />-->
-        <button class="btn btn-info ml-4 px-5" type="submit">Create Keep</button>
+      </div>-->
+      <!-- <div class="form-group">
+        <label for="checkbox">Make public</label>
+        <input type="checkbox" id="checkbox" v-model="newKeep.isPrivate" />
+      </div>-->
+      <div class="ml-4 pl-3">
+        <button class="btn btn-info px-5 ml-5" type="submit">Create Vault</button>
       </div>
     </form>
   </div>
@@ -44,19 +46,19 @@
 
 <script>
 export default {
-  name: "addkeeps",
+  name: "addvaults",
   data() {
     return {
-      newKeep: {}
+      newVault: {}
     };
   },
   mounted() {},
   computed: {},
   methods: {
-    createKeep() {
-      this.$store.dispatch("createKeep", this.newKeep);
-      this.newKeep = {};
-      console.log("IM A POSTED GHOST");
+    createVault() {
+      this.$store.dispatch("createVault", this.newVault);
+      this.newVault = {};
+      console.log("IM A VAULT");
     }
   },
   components: {}
@@ -64,7 +66,7 @@ export default {
 </script>
 
 <style>
-.addform {
+.addvform {
   width: 30vw;
   border: 2px black solid;
 }
