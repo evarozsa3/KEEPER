@@ -2,20 +2,20 @@
   <div class="home container-fluid">
     <!-- <h1>Welcome Home</h1> -->
     <!-- <add-keeps></add-keeps> -->
-    <k-card></k-card>
+    <!-- <k-card></k-card> -->
     <div class="row m-1">
-      <k-card
+      <my-k-card
         class="ml-5"
         v-for="publicKeep in publicKeeps"
         :keepData="publicKeep"
         :key="publicKeep.id"
-      ></k-card>
+      ></my-k-card>
     </div>
   </div>
 </template>
 
 <script>
-import KCard from "../components/KCard.vue";
+import MyKCard from "../components/MyKCard.vue";
 import AddKeeps from "../components/AddKeeps.vue";
 export default {
   name: "home",
@@ -41,7 +41,7 @@ export default {
   },
   components: {
     AddKeeps,
-    KCard
+    MyKCard
   }
 };
 </script>
