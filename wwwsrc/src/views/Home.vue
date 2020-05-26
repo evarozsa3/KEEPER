@@ -1,7 +1,7 @@
 <template>
   <div class="home container-fluid">
     <!-- <h1>Welcome Home</h1> -->
-    <add-keeps></add-keeps>
+    <!-- <add-keeps></add-keeps> -->
     <k-card></k-card>
     <div class="row">
       <k-card v-for="publicKeep in publicKeeps" :keepData="publicKeep" :key="publicKeep.id"></k-card>
@@ -33,15 +33,6 @@ export default {
     logout() {
       this.$store.dispatch("logout");
     }
-    // deleteKeep(id) {
-    //   console.log("deleteKeep", id);
-    //   this.$store.dispatch("deleteKeep", id);
-    // },
-    // addKeep() {
-    //   this.newKeep.isPrivate = this.newKeep.isPrivate == "0";
-    //   this.$store.dispatch("addKeep", this.newKeep);
-    //   this.newKeep = {};
-    // }
   },
   components: {
     AddKeeps,
