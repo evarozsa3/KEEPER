@@ -32,7 +32,7 @@ export default {
     }
   },
   mounted() {
-    // this.$store.commit("getKeeps");
+    this.$store.dispatch("getKeeps");
   },
   methods: {
     logout() {

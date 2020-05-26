@@ -1,15 +1,19 @@
 <template>
   <div class="dashboard container-fluid">
-    <!-- <h1>WELCOME TO THE DASHBOARD</h1> -->
     <!-- public {{ publicKeeps }} user {{ userKeeps }} -->
     <div class="row">
       <add-keeps></add-keeps>
       <add-vaults></add-vaults>
+      <div class="row">
+        <div class="col-12 vaultlist mt-5">
+          <v-card v-for="myVault in myVaults" :vaultData="myVault" :key="myVault.id"></v-card>
+        </div>
+      </div>
+    </div>
+    <div class="row m-1">
+      <k-card class="ml-5" v-for="myKeep in myKeeps" :keepData="myKeep" :key="myKeep.id"></k-card>
     </div>
     <!-- <v-card></v-card> -->
-    <div class="row">
-      <v-card v-for="myVault in myVaults" :vaultData="myVault" :key="myVault.id"></v-card>
-    </div>
   </div>
 </template>
 
@@ -19,17 +23,32 @@ import AddVaults from "../components/AddVaults.vue";
 import VCard from "../components/VCard.vue";
 import KCard from "../components/KCard.vue";
 export default {
-  mounted() {},
+  mounted() {
+    this.$store.dispatch("getMyVaults");
+    this.$store.dispatch("getMyKeeps");
+  },
   computed: {
     myVaults() {
       return this.$store.state.myVaults;
     },
     user() {
       return this.$store.state.user;
+    },
+    myKeeps() {
+      console.log(this.$store.state.myKeeps);
+      return this.$store.state.myKeeps;
     }
+    // publicKeeps() {
+    //   return this.$store.state.publicKeeps;
+    // }
   },
   components: { AddKeeps, AddVaults, VCard, KCard }
 };
 </script>
 
-<style></style>
+<style>
+.vaultlist {
+  overflow-y: scroll;
+  height: 60vh;
+}
+</style>

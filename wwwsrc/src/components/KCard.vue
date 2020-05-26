@@ -4,8 +4,8 @@
       <!-- <h1>HEY YOu</h1> -->
 
       <img class="img m-1" style="width: 18.3rem; height: 18rem;" :src="keepData.img" alt="#" />
-      <div class="p-2">
-        <h5>name: {{keepData.name}}</h5>
+      <div class="p-2 text-center">
+        <h3>{{keepData.name}}</h3>
         <p>{{keepData.description}}</p>
       </div>
       <button class="btn btn-success kbtn m-1 pb-0 pt-0">Add to Vault</button>

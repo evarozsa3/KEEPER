@@ -17,7 +17,7 @@ let api = Axios.create({
 
 export default new Vuex.Store({
   state: {
-    // keeps: [],
+    myKeeps: [],
     publicKeeps: [],
     myVaults: []
   },
@@ -25,9 +25,15 @@ export default new Vuex.Store({
     setKeeps(state, publicKeeps) {
       state.publicKeeps = publicKeeps
     },
-    setVaults(state, myVaults) {
-      state.myVaults = myVaults
-    }
+    setMyKeeps(state, keeps) {
+      state.myKeeps = keeps
+    },
+    setMyVaults(state, vaults) {
+      state.myVaults = vaults
+    },
+    // setVaults(state, myVaults) {
+    //   state.myVaults = myVaults
+    // }
   },
   actions: {
     setBearer({ }, bearer) {
@@ -45,12 +51,21 @@ export default new Vuex.Store({
         alert(JSON.stringify(err));
       }
     },
+    async getMyKeeps({ commit, dispatch }) {
+      try {
+        let res = await api.get("keeps/user")
+        commit("setMyKeeps", res.data)
+      } catch (e) {
+        alert(JSON.stringify(e));
+      }
+    },
     async createKeep({
       dispatch
     }, newKeep) {
       try {
         let res = await api.post('keeps', newKeep)
         dispatch('getKeeps')
+        dispatch('getMyKeeps')
       } catch (error) {
         console.error(error)
       }
@@ -60,17 +75,26 @@ export default new Vuex.Store({
       try {
         let res = await api.delete("keeps/" + id);
         this.dispatch("getKeeps")
+        this.dispatch('getMyKeeps')
       } catch (err) {
         alert(JSON.stringify(err));
       }
     },
 
-    async getVaults({ commit }) {
+    // async getVaults({ commit }) {
+    //   try {
+    //     let res = await api.get('vaults/user')
+    //     commit("setVaults", res.data)
+    //   } catch (err) {
+    //     alert(JSON.stringify(err));
+    //   }
+    // },
+    async getMyVaults({ commit, dispatch }) {
       try {
-        let res = await api.get('vaults')
-        commit("setVaults", res.data)
-      } catch (err) {
-        alert(JSON.stringify(err));
+        let res = await api.get("vaults/user")
+        commit("setMyVaults", res.data)
+      } catch (e) {
+        alert(JSON.stringify(e));
       }
     },
     async createVault({
@@ -78,7 +102,7 @@ export default new Vuex.Store({
     }, newVault) {
       try {
         let res = await api.post('vaults', newVault)
-        dispatch('getVaults')
+        dispatch('getMyVaults')
       } catch (error) {
         console.error(error)
       }
@@ -88,7 +112,7 @@ export default new Vuex.Store({
       try {
         console.log("im a delete function")
         let res = await api.delete("vaults/" + id);
-        this.dispatch("getVaults")
+        this.dispatch("getMyVaults")
       } catch (err) {
         alert(JSON.stringify(err));
       }

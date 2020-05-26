@@ -21,16 +21,36 @@ namespace Keepr.Controllers
       _vs = vs;
     }
     [HttpGet]
-    public ActionResult<IEnumerable<Vault>> Get()
+    // public ActionResult<IEnumerable<Vault>> Get()
+    // {
+    //   try
+    //   {
+    //     return Ok(_vs.Get());
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     return BadRequest(e.Message);
+    //   };
+    // }
+
+    [Authorize]
+    [HttpGet("user")]
+    public ActionResult<IEnumerable<Vault>> GetVaultsByUserId()
     {
       try
       {
-        return Ok(_vs.Get());
+        Claim user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+        if (user == null)
+        {
+          throw new Exception("please log in for vaults sake");
+        }
+        string userId = user.Value;
+        return Ok(_vs.GetByUserId(userId));
       }
-      catch (Exception e)
+      catch (System.Exception err)
       {
-        return BadRequest(e.Message);
-      };
+        return BadRequest(err.Message);
+      }
     }
 
     [HttpGet("{id}")]

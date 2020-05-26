@@ -15,12 +15,17 @@ namespace Keepr.Repositories
       _db = db;
     }
 
-    internal IEnumerable<Vault> Get()
-    {
-      string sql = "SELECT * FROM vaults";
-      return _db.Query<Vault>(sql);
-    }
+    // internal IEnumerable<Vault> Get()
+    // {
+    //   string sql = "SELECT * FROM vaults";
+    //   return _db.Query<Vault>(sql);
+    // }
 
+    internal IEnumerable<Vault> GetVaultsByUserId(string userId)
+    {
+      string sql = "SELECT * FROM Vaults WHERE userId = @UserId;";
+      return _db.Query<Vault>(sql, new { userId });
+    }
     internal Vault GetById(int id)
     {
       string sql = "SELECT * FROM vaults WHERE id = @Id LIMIT 1";
