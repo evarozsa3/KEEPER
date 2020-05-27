@@ -20,9 +20,39 @@ namespace Keepr.Services
       return _repo.Get(userId);
     }
 
+
+    // public IEnumerable<VaultKeep> GetKeepsByVaultId(string vaultId, string userId)
+    // {
+    //   return _repo.GetKeepsByVaultId(vaultId, userId);
+    // }
+
+    public VaultKeep GetOne(int id)
+    {
+      VaultKeep foundVaultKeep = _repo.GetOne(id);
+      if (foundVaultKeep == null)
+      {
+        throw new Exception("Invalid Id");
+      }
+      return foundVaultKeep;
+    }
+
     internal VaultKeep Create(VaultKeep newVaultKeep)
     {
       return _repo.Create(newVaultKeep);
+    }
+
+    internal string Delete(int id, string userId)
+    {
+      VaultKeep foundVaultKeep = GetOne(id);
+      if (foundVaultKeep.UserId != userId)
+      {
+        throw new Exception("sorry cant touch this.. duh nah nah nah");
+      }
+      if (_repo.Delete(id, userId))
+      {
+        return "deleted";
+      }
+      throw new Exception("opps something went wrong");
     }
   }
 }

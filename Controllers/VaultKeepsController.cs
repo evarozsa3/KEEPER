@@ -44,6 +44,20 @@ namespace Keepr.Controller
     }
 
     [Authorize]
+    [HttpGet("{id}")]
+    public ActionResult<VaultKeep> GetOne(int id)
+    {
+      try
+      {
+        return Ok(_vks.GetOne(id));
+      }
+      catch (System.Exception err)
+      {
+        return BadRequest(err.Message);
+      }
+    }
+
+    [Authorize]
     [HttpPost]
     public ActionResult<VaultKeep> Create([FromBody] VaultKeep newVaultKeep)
     {
@@ -54,6 +68,26 @@ namespace Keepr.Controller
       catch (System.Exception err)
       {
         return BadRequest(err.Message);
+      }
+    }
+
+    [Authorize]
+    [HttpDelete("{id}")]
+    public ActionResult<string> Delete(int id)
+    {
+      try
+      {
+        Claim user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+        if (user == null)
+        {
+          throw new Exception("please log in to destroy!");
+        }
+        string userId = user.Value;
+        return Ok(_vks.Delete(id, userId));
+      }
+      catch (System.Exception error)
+      {
+        return BadRequest(error.Message);
       }
     }
   }
