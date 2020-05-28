@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard container-fluid">
+  <div class="dashboard container-fluid mt-5">
     <!-- public {{ publicKeeps }} user {{ userKeeps }} -->
     <div class="row justify-content-center">
       <add-keeps></add-keeps>

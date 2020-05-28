@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-light bg-danger">
     <router-link class="navbar-brand text-light" :to="{ name: 'home' }">Keepr</router-link>
     <button
       class="navbar-toggler"
@@ -26,8 +26,12 @@
         </li>
       </ul>
       <span class="navbar-text">
-        <button class="btn btn-info" @click="login" v-if="!$auth.isAuthenticated">Login</button>
-        <button class="btn btn-warning" @click="logout" v-else>logout</button>
+        <button
+          class="btn btnlog py-0 btn-primary"
+          @click="login"
+          v-if="!$auth.isAuthenticated"
+        >Login</button>
+        <button class="btn btnlog py-0 btn-warning" @click="logout" v-else>logout</button>
       </span>
     </div>
   </nav>
@@ -57,4 +61,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.navbar {
+  overflow: hidden;
+  z-index: 1;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+  height: 7vh;
+}
+.btnlog {
+  height: 4vh;
+}
+</style>

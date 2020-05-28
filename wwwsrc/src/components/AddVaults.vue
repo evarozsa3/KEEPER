@@ -72,7 +72,7 @@ export default {
   width: 23vw;
   border: 2px rgb(22, 22, 22) solid;
   background-color: rgb(75, 74, 74);
-  box-shadow: rgb(93, 102, 9) 2px 2px 5px;
+  box-shadow: rgb(145, 97, 43) 2px 2px 5px;
   border-radius: 10px;
 }
 </style>

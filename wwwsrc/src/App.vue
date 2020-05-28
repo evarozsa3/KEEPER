@@ -21,6 +21,11 @@ export default {
 </script>
 
 <style lang="scss">
+#app {
+  background-image: url(https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-042.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
 @import "./assets/_variables.scss";
 @import "bootstrap";
 @import "./assets/_overrides.scss";

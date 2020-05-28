@@ -1,5 +1,5 @@
 <template>
-  <div class="home container-fluid">
+  <div class="home container-fluid mt-5">
     <!-- <h1>Vault Details</h1> -->
 
     <div class="row">
