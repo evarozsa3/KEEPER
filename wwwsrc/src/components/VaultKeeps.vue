@@ -3,7 +3,7 @@
     <div class="card mt-5" style="width: 19rem;">
       <!-- <h1>HEY YOu</h1> -->
 
-      <img class="img m-1" style="width: 18.3rem; height: 18rem;" :src="vkImg" alt="#" />
+      <img class="img m-1" style="width: 18.3rem; height: 18rem;" :src="vaultKeepData.img" alt="#" />
       <div class="p-2 text-center">
         <h3>{{vaultKeepData.name}}</h3>
         <p>{{vaultKeepData.description}}</p>
@@ -22,9 +22,12 @@ export default {
     return {};
   },
   computed: {
-    vkImg() {
-      let vkImg = this.vaultKeepData.img;
+    user() {
+      return this.$store.state.user;
     }
+    // vkImg() {
+    //   let vkImg = this.vaultKeepData.img;
+    // }
     // getKeepData(id) {
     //   this.$store.dispatch(getKeeps);
     // }
