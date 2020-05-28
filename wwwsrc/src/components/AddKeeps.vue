@@ -56,7 +56,7 @@ export default {
     createKeep() {
       this.$store.dispatch("createKeep", this.newKeep);
       this.newKeep = {};
-      console.log("IM A POSTED GHOST");
+      console.log("A NEW KEEP WAS BORN");
     }
   },
   components: {}

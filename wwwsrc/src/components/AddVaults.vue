@@ -58,7 +58,7 @@ export default {
     createVault() {
       this.$store.dispatch("createVault", this.newVault);
       this.newVault = {};
-      console.log("IM A VAULT");
+      console.log("A NEW VAULT WAS BORN");
     }
   },
   components: {}

@@ -155,7 +155,7 @@ export default new Vuex.Store({
       } catch (err) {
         alert(JSON.stringify(err));
       }
-      console.log("byebye vault keeps")
+      console.log("bye bye vaultkeeps")
     },
     // async deleteVaultKeep({ commit, dispatch }, vaultKeepData) {
     //   try {
