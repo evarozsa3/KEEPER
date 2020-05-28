@@ -1,32 +1,38 @@
 <template>
   <div class="home container-fluid">
-    <h1>Vault Details</h1>
+    <!-- <h1>Vault Details</h1> -->
 
     <div class="row">
       <div class="row m-1">
-        <k-card class="ml-5" v-for="myKeep in myKeeps" :keepData="myKeep" :key="myKeep.id"></k-card>
+        <vault-keeps
+          class="ml-5"
+          v-for="vaultKeep in vaultKeeps"
+          :vaultKeepData="vaultKeep"
+          :key="vaultKeep.id"
+        ></vault-keeps>
       </div>
+      <vault-keeps></vault-keeps>
     </div>
   </div>
 </template>
 
 <script>
-import KCard from "../components/KCard.vue";
+import VaultKeeps from "../components/VaultKeeps.vue";
 export default {
   name: "vaultInfo",
   mounted() {
-    this.$store.dispatch("getVaultKeeps", this.$route.params.vaultId);
+    this.$store.dispatch("getMyVaultKeeps", this.$route.params.vaultId);
   },
   computed: {
     user() {
       return this.$store.state.user;
     },
-    myKeeps() {
-      console.log(this.$store.state.myKeeps);
-      return this.$store.state.myKeeps;
+    vaultKeeps() {
+      console.log(this.$store.state.vaultKeeps, "Hello my name is VaultKeep");
+      return this.$store.state.vaultKeeps;
     }
   },
   methods: {},
-  components: { KCard }
+  components: { VaultKeeps }
 };
 </script>

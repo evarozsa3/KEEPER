@@ -23,10 +23,15 @@ namespace Keepr.Services
       return _repo.GetVaultsByUserId(userId);
     }
 
-    public IEnumerable<VaultKeepViewModel> GetKeepsByVaultId(int id)
-    {
-      return _repo.GetKeepsByVaultId(id);
-    }
+    // public IEnumerable<VaultKeepViewModel> GetKeepsByVaultId(int vaultId, string userId)
+    // {
+    //   return _repo.GetKeepsByVaultId(vaultId);
+    // }
+
+    // public IEnumerable<VaultKeep> GetKeepsByVaultId(string vaultId, string userId)
+    // {
+    //   return _repo.GetKeepsByVaultId(vaultId, userId);
+    // }
     public Vault GetById(int id)
     {
       Vault foundVault = _repo.GetById(id);

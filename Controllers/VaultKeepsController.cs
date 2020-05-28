@@ -31,10 +31,9 @@ namespace Keepr.Controller
         Claim user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
         if (user == null)
         {
-          throw new Exception("You must be logged in to get your vault keeps.");
+          throw new Exception("You must be logged in");
         }
         string userId = user.Value;
-        //return Ok(_cs.GetByUserId(userId));
         return Ok(_vks.Get(userId));
       }
       catch (Exception e)
@@ -57,13 +56,31 @@ namespace Keepr.Controller
       }
     }
 
+    // [Authorize]
+    // [HttpGet("{vaultId, userId}")]
+    // public ActionResult<VaultKeep> GetKeepsByVaultId(int vaultId, string userId)
+    // {
+    //   try
+    //   {
+    //     return Ok(_vks.GetKeepsByVaultId(vaultId, userId));
+    //   }
+    //   catch (System.Exception err)
+    //   {
+    //     return BadRequest(err.Message);
+    //   }
+
+    // }
+
     [Authorize]
     [HttpPost]
-    public ActionResult<VaultKeep> Create([FromBody] VaultKeep newVaultKeep)
+    public ActionResult<VaultKeep> Post([FromBody] VaultKeep newVaultKeep)
     {
       try
       {
-        return Ok(_vks.Create(newVaultKeep));
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        newVaultKeep.UserId = userId;
+        return Ok(_vks.Create(newVaultKeep, userId));
+        // return Ok(_vks.GetKeepsByVaultId(id, userId));
       }
       catch (System.Exception err)
       {

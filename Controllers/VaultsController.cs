@@ -22,7 +22,7 @@ namespace Keepr.Controllers
       _vs = vs;
       _vks = vks;
     }
-    [HttpGet]
+    // [HttpGet]
     // public ActionResult<IEnumerable<Vault>> Get()
     // {
     //   try
@@ -69,15 +69,45 @@ namespace Keepr.Controllers
     }
 
 
-    // [HttpGet("{id}/keeps")]
-    // public ActionResult<IEnumerable<VaultKeepViewModel>> GetKeepsByVaultId(string vaultId, string userId)
+    [Authorize]
+    [HttpGet("{id}/keeps")]
+    public ActionResult<IEnumerable<VaultKeepViewModel>> GetKeepsByVaultId(int id)
+    {
+      try
+      {
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        return Ok(_vks.GetKeepsByVaultId(id, userId));
+        // return Ok(_vs.GetById(id));
+        // TODO call to the vault keep service. pass it the vault id,
+        // TODO vault keep service call vault keep repsitory, to get vaultkeepsbyvaultId.
+      }
+      catch (System.Exception err)
+      {
+        return BadRequest(err.Message);
+      }
+    }
+    // [Authorize]
+    // [HttpGet("{vaultId, userId}")]
+    // public ActionResult<VaultKeep> GetKeepsByVaultId(int vaultId, string userId)
     // {
     //   try
     //   {
     //     return Ok(_vks.GetKeepsByVaultId(vaultId, userId));
-    //     // return Ok(_vs.GetById(id));
-    //     // TODO call to the vault keep service. pass it the vault id,
-    //     // TODO vault keep service call vault keep repsitory, to get vaultkeepsbyvaultId.
+    //   }
+    //   catch (System.Exception err)
+    //   {
+    //     return BadRequest(err.Message);
+    //   }
+
+    // }
+
+    // [Authorize]
+    // [HttpGet("{id}/keeps")]
+    // public ActionResult<IEnumerable<VaultKeepViewModel>> GetKeepsByVaultId(int id)
+    // {
+    //   try
+    //   {
+    //     return Ok(_vs.GetKeepsByVaultId(id));
     //   }
     //   catch (System.Exception err)
     //   {
@@ -86,21 +116,7 @@ namespace Keepr.Controllers
     // }
 
     [Authorize]
-    [HttpGet("{id}/keeps")]
-    public ActionResult<IEnumerable<VaultKeepViewModel>> GetKeepsByVaultId(int id)
-    {
-      try
-      {
-        return Ok(_vs.GetKeepsByVaultId(id));
-      }
-      catch (System.Exception err)
-      {
-        return BadRequest(err.Message);
-      }
-    }
-
     [HttpPost]
-    [Authorize]
     public ActionResult<Vault> Post([FromBody] Vault newVault)
     {
       try

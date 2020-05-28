@@ -21,10 +21,10 @@ namespace Keepr.Services
     }
 
 
-    // public IEnumerable<VaultKeep> GetKeepsByVaultId(string vaultId, string userId)
-    // {
-    //   return _repo.GetKeepsByVaultId(vaultId, userId);
-    // }
+    public IEnumerable<VaultKeepViewModel> GetKeepsByVaultId(int vaultId, string userId)
+    {
+      return _repo.GetKeepsByVaultId(vaultId, userId);
+    }
 
     public VaultKeep GetOne(int id)
     {
@@ -36,9 +36,9 @@ namespace Keepr.Services
       return foundVaultKeep;
     }
 
-    internal VaultKeep Create(VaultKeep newVaultKeep)
+    internal VaultKeep Create(VaultKeep newVaultKeep, string userId)
     {
-      return _repo.Create(newVaultKeep);
+      return _repo.Create(newVaultKeep, userId);
     }
 
     internal string Delete(int id, string userId)
