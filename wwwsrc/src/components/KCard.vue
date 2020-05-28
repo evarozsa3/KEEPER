@@ -10,7 +10,7 @@
       </div>
       <div class="dropdown">
         <button
-          class="btn btn-success dropdown-toggle kbtn m-1 pb-0 pt-0"
+          class="btn btn-dark dropdown-toggle kbtn m-1 pb-0 pt-0"
           type="button"
           data-toggle="dropdown"
         >
@@ -78,6 +78,7 @@ export default {
 }
 .card {
   border-radius: 2%;
-  border: black solid 2px;
+  border: rgb(32, 32, 32) solid 2px;
+  box-shadow: rgb(93, 102, 9) 2px 2px 10px;
 }
 </style>

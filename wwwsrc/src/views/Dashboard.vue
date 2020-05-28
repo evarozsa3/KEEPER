@@ -1,11 +1,11 @@
 <template>
   <div class="dashboard container-fluid">
     <!-- public {{ publicKeeps }} user {{ userKeeps }} -->
-    <div class="row">
+    <div class="row justify-content-center">
       <add-keeps></add-keeps>
       <add-vaults></add-vaults>
-      <div class="row">
-        <div class="col-12 vaultlist mt-5">
+      <div class>
+        <div class="col-12 vaultlist mt-5" id="vaultscroll">
           <v-card v-for="myVault in myVaults" :vaultData="myVault" :key="myVault.id"></v-card>
         </div>
       </div>
@@ -49,6 +49,20 @@ export default {
 <style>
 .vaultlist {
   overflow-y: scroll;
-  height: 60vh;
+  overflow-x: hidden;
+  height: 55vh;
+}
+
+::-webkit-scrollbar {
+  width: 1em;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }
 </style>

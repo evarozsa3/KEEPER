@@ -1,9 +1,9 @@
 <template>
-  <div class="m-5">
+  <div class="my-5 mx-3">
     <!-- <H1>HELLO THERE</H1> -->
     <form class="addvform p-3" @submit.prevent="createVault()">
       <h1 class="text-center text-info">+Vault</h1>
-      <div class="form-group">
+      <div class="form-group text-warning">
         <label for="name">Name:</label>
         <input
           type="text"
@@ -13,7 +13,7 @@
           v-model="newVault.name"
         />
       </div>
-      <div class="form-group">
+      <div class="form-group text-warning">
         <label for="description">Description:</label>
         <input
           type="text"
@@ -37,8 +37,10 @@
         <label for="checkbox">Make public</label>
         <input type="checkbox" id="checkbox" v-model="newKeep.isPrivate" />
       </div>-->
-      <div class="ml-4 pl-3">
-        <button class="btn btn-info px-5 ml-5" type="submit">Create Vault</button>
+      <div class>
+        <button class="btn btnadd btn-info px-5 py-0" type="submit">
+          <h5>+</h5>
+        </button>
       </div>
     </form>
   </div>
@@ -67,7 +69,10 @@ export default {
 
 <style>
 .addvform {
-  width: 30vw;
-  border: 2px black solid;
+  width: 23vw;
+  border: 2px rgb(22, 22, 22) solid;
+  background-color: rgb(75, 74, 74);
+  box-shadow: rgb(93, 102, 9) 2px 2px 5px;
+  border-radius: 10px;
 }
 </style>
